@@ -1,4 +1,3 @@
-// pages/index.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -39,10 +38,6 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error("Error fetching members:", error);
     }
-  };
-
-  const handleEditMember = (memberId: number) => {
-    router.push(`/edit-member/${memberId}`);
   };
 
   const handleSearchChange = (newSearchTerm: string) => {
@@ -107,12 +102,7 @@ const Home: React.FC = () => {
               )}
             </button>
           </div>
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md mr-4"
-            onClick={() => router.push("/add-consignment-group")}
-          >
-            장학 단체 추가
-          </button>
+
           <button
             className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md"
             onClick={() => router.push("/add-member")}
@@ -130,16 +120,11 @@ const Home: React.FC = () => {
           ? currentMembers.map((member) => (
               <li
                 key={member.id}
-                className="my-4 py-3 px-4 rounded-lg shadow-md bg-white mb-2 hover:bg-gray-100"
+                className="my-4 py-3 px-4 rounded-lg shadow-md bg-white mb-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => router.push(`/members/${member.id}`)}
               >
                 <div className="flex justify-between">
                   <div className="text-xl font-bold">{member.name}</div>
-                  <button
-                    className="ml-2 px-2 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
-                    onClick={() => handleEditMember(member.id)}
-                  >
-                    수정
-                  </button>
                 </div>
                 <div className="px-1 py-2 text-sm text-gray-500">
                   <p>학과: {member.department}</p>
